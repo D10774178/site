@@ -1,0 +1,65 @@
+html
+  
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      border: none;
+    }
+  </style>
+  <title>用户注册</title>
+</head>
+<body>
+  <h2>用户注册</h2>
+  <table>
+    <tr>
+      <td>用户名称:</td>
+      <td><input type="text" value="zhangsan"></td>
+    </tr>
+    <tr>
+      <td>用户密码:</td>
+      <td><input type="password"></td>
+    </tr>
+    <tr>
+      <td>用户性别:</td>
+      <td>
+        <input type="radio" name="gender" value="male"> 男
+        <input type="radio" name="gender" value="female"> 女
+      </td>
+    </tr>
+    <tr>
+      <td>爱好:</td>
+      <td>
+        <input type="checkbox" name="hobby" value="football"> 足球
+        <input type="checkbox" name="hobby" value="basketball"> 篮球
+        <input type="checkbox" name="hobby" value="lol"> LOL
+        <input type="checkbox" name="hobby" value="kdrama"> 韩剧
+        <input type="checkbox" name="hobby" value="honor"> 王者荣耀
+      </td>
+    </tr>
+    <tr>
+      <td>邮箱:</td>
+      <td><input type="email" placeholder="请输入您的邮箱"></td>
+    </tr>
+    <tr>
+      <td>用户头像:</td>
+      <td><input type="file"></td>
+    </tr>
+    <tr>
+      <td>您的家庭住址是:</td>
+      <td>
+        <select>
+          <option value="shaanxi">陕西</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>您的建议或者意见</td>
+      <td><textarea placeholder="您的建议或者意见"></textarea></td>
+    </tr>
+  </table>
+</body>
+</html>
