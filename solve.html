@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation Solver</title>
+</head>
+
+<body>
+    <script>
+        // 步骤1：获取系数
+        var a_str = prompt("请输入系数a");
+        var b_str = prompt("请输入系数b");
+        var c_str = prompt("请输入系数c");
+
+        // 步骤2：类型转换
+        var a = parseFloat(a_str);
+        var b = parseFloat(b_str);
+        var c = parseFloat(c_str);
+
+        // 步骤3：计算判别式
+        var delta = b * b - 4 * a * c;
+
+        // 步骤4：计算根
+        var x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+        // 步骤5和6：提示结果并控制台记录
+        alert("方程的根为x1 = " + x1 + ", x2 = " + x2);
+        console.log("方程的根为x1 = " + x1 + ", x2 = " + x2);
+    </script>
+</body>
+
+</html>
