@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        @keyframes fly {
+            from {
+                top: 400px;
+            }
+
+            to {
+                top: 0px;
+            }
+        }
+
+       .circle {
+            border - radius: 50%;
+            position: absolute;
+        }
+    </style>
+    <script>
+        function makeballoon() {
+            let b = document.createElement('div');
+            b.className = 'circle';
+            // 随机生成气球的初始大小
+            let size = Math.random() * 50 + 50; 
+            b.style.width = size + 'px';
+            b.style.height = size + 'px';
+            // 随机生成颜色
+            let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); 
+            b.style.backgroundColor = randomColor;
+            b.style.left = Math.random() * (window.innerWidth - 100)+ 'px';
+            b.style.top = 400 + 'px';
+            b.style.animation = 'fly 10s 1';
+            document.body.appendChild(b);
+        }
+
+        // 创建10个气球
+        for (let i = 0; i < 10; i++) { 
+            makeballoon();
+        }
+    </script>
+</body>
+
+</html>
