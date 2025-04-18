@@ -1,0 +1,24 @@
+<script>
+function Balloon(color, diameter,speed)
+{
+    this.color = color;
+    this.diameter = diameter;
+    this.speed = speed;
+    this.id = id;
+    this.make = function()
+    {
+        let dv = document.createElement('div');
+        dv.id = id;
+        dv.style.cssText = 'width:' + diameter+ 'pc;height' + diameter +'pcx;border-radius:' + (diameter/2) + 'px;;background-color;' + this.color+ ';position:absolute;left;' + (id*50) +'px;top:700px';
+        dvvvv
+        document.body.appendchild(dv);
+    }
+    this.rise = function()
+    {
+        let dv = document .getElementById('d' + this .id);
+        dv.style.animationName = "fly";
+        dv.style.animationDuration = (700/this.speed) + 's';
+    }
+}
+let b = new Balloon(1,'red',200,1);
+</script>
