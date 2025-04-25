@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Balloon Class Demo</title>
+</head>
+<body>
+    <h1>Balloon 类测试</h1>
+    <script>
+        // 定义 Balloon 类
+        class Balloon {
+            constructor(color, size) {
+                this.color = color; // 气球颜色
+                this.size = size; // 气球大小（如 "small", "large"）
+            }
+
+            pop() {
+                console.log("Pop!"); // 控制台输出
+                document.write("<p>气球爆炸啦！</p >"); // 页面显示爆炸效果
+            }
+        }
+
+        // ----------------------- 测试代码 -----------------------
+        // 创建一个红色大气球实例
+        const redBalloon = new Balloon("red", "large");
+        document.write("<p>气球颜色：" + redBalloon.color + "</p >");
+        document.write("<p>气球大小：" + redBalloon.size + "</p >");
+        
+        // 调用 pop 方法
+        redBalloon.pop();
+    </script>
+</body>
+</html>

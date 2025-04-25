@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>时间检查工具</title>
+</head>
+<body>
+    <script>
+        function righttime(d, timeslots) {
+            // 正确的星期映射：0=周日(U), 1=周一(M), 2=周二(T), 3=周三(W), 4=周四(R), 5=周五(F), 6=周六(S)
+            const weekdayMap = { 0: 'U', 1: 'M', 2: 'T', 3: 'W', 4: 'R', 5: 'F', 6: 'S' };
+            const weekdayChar = weekdayMap[d.getDay()]; // 获取当前日期的星期缩写（如周四对应 'R'）
+
+            const slots = timeslots.split(','); // 按逗号分割多个时间段
+            for (const slot of slots) {
+                const cleanedSlot = slot.replace(/\s+/g, ''); // 去除所有空格（包括连续空格）
+                const match = cleanedSlot.match(/([A-Za-z]+)(\d+:\d+-\d+:\d+)/); // 匹配星期部分和时间部分
+
+                if (!match) continue; // 格式错误则跳过
+
+                const [, wsPart, timePart] = match; // 提取星期缩写和时间范围
+                const wsUpperCase = wsPart.toUpperCase(); // 统一转为大写，确保不区分大小写
+
+                if (wsUpperCase.indexOf(weekdayChar) === -1) continue; // 星期不匹配则跳过
+
+                // 解析时间范围（将 'hh:mm' 转为分钟数，如 '10:30' 转为 630 分钟）
+                const parseTime = (timeStr) => {
+                    const [h, m] = timeStr.split(':').map(Number); // 分割小时和分钟并转为数字
+                    return h * 60 + m; // 转换为分钟数
+                };
+                const [startTimeStr, endTimeStr] = timePart.split('-'); // 分割开始和结束时间
+                const start = parseTime(startTimeStr); // 开始时间（分钟数）
+                const end = parseTime(endTimeStr); // 结束时间（分钟数）
+                const currentTime = d.getHours() * 60 + d.getMinutes(); // 当前时间（分钟数）
+
+                if (start <= currentTime && currentTime <= end) {
+                    return true; // 时间在范围内，返回 true
+                }
+            }
+            return false; // 所有时间段检查完毕，未匹配则返回 false
+        }
+
+        // ----------------------- 测试示例 -----------------------
+        // 测试日期：2024年10月10日（周四）10:30，对应 JavaScript 日期对象（月份从 0 开始，10月对应 9）
+        const testDate = new Date(2024, 9, 10, 10, 30); 
+        // 测试时间段：包含周四（R）的 10:00-11:00 和周二（T）的 14:00-15:00
+        const testTimeslots = "R 10:00 - 11:15, T 14:00-15:45"; 
+
+        // 执行检查并输出结果
+        const result = righttime(testDate, testTimeslots);
+        document.write(`<h3>检查结果：${result}</h3>`);
+        document.write(`<p>测试日期：${testDate.toString()}</p >`);
+        document.write(`<p>测试时间段：${testTimeslots}</p >`);
+    </script>
+</body>
+</html>
