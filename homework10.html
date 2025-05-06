@@ -1,0 +1,72 @@
+def righttime(d, timeslots):
+    entries = [e.strip() for e in timeslots.split(',')]
+    day_map = {
+        'M': 0,
+        'T': 1,
+        'W': 2,
+        'R': 3,
+        'F': 4,
+        'S': 5,
+        'U': 6
+    }
+    
+    for entry in entries:
+        days_letters = []
+        i = 0
+        while i < len(entry):
+            c = entry[i]
+            if c in day_map:
+                days_letters.append(c)
+                i += 1
+            elif c.isspace():
+                i += 1
+            else:
+                break
+        if not days_letters:
+            continue
+        
+        time_part = entry[i:]
+        time_parts = [part.strip() for part in time_part.split('-', 1)]
+        if len(time_parts) != 2:
+            continue
+        start_str, end_str = time_parts
+        
+        # Parse start time
+        start_split = start_str.split(':', 1)
+        if len(start_split) != 2:
+            continue
+        sh, sm = start_split[0].strip(), start_split[1].strip()
+        try:
+            sh = int(sh)
+            sm = int(sm)
+            if not (0 <= sh < 24 and 0 <= sm < 60):
+                continue
+            start_time = (sh, sm)
+        except ValueError:
+            continue
+        
+        # Parse end time
+        end_split = end_str.split(':', 1)
+        if len(end_split) != 2:
+            continue
+        eh, em = end_split[0].strip(), end_split[1].strip()
+        try:
+            eh = int(eh)
+            em = int(em)
+            if not (0 <= eh < 24 and 0 <= em < 60):
+                continue
+            end_time = (eh, em)
+        except ValueError:
+            continue
+        
+        # Check if d's day is in valid days
+        valid_days = {day_map[c] for c in days_letters if c in day_map}
+        if d.weekday() not in valid_days:
+            continue
+        
+        # Check time
+        d_time = (d.hour, d.minute)
+        if start_time <= d_time <= end_time:
+            return True
+    
+    return False

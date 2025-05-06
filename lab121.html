@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>太阳系天体表格</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        th:hover { background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>点击页面任意位置显示太阳系天体表格</h1>
+
+    <script>
+        // 太阳系天体数据（10个示例数据）
+        const solarSystemObjects = [
+            { name: "太阳", mass: 1.989e30, orbitRadius: 0, color: "黄色", diameter: 1391000 },
+            { name: "水星", mass: 3.3011e23, orbitRadius: 57909227, color: "灰色", diameter: 4880 },
+            { name: "金星", mass: 4.8675e24, orbitRadius: 108208930, color: "橙黄色", diameter: 12104 },
+            { name: "地球", mass: 5.97237e24, orbitRadius: 149597870, color: "蓝色", diameter: 12756 },
+            { name: "火星", mass: 6.4171e23, orbitRadius: 227943824, color: "红色", diameter: 6792 },
+            { name: "木星", mass: 1.8982e27, orbitRadius: 778340821, color: "棕色", diameter: 139820 },
+            { name: "土星", mass: 5.6834e26, orbitRadius: 1426666422, color: "淡黄色", diameter: 116460 },
+            { name: "天王星", mass: 8.6810e25, orbitRadius: 2870658186, color: "天蓝色", diameter: 50724 },
+            { name: "海王星", mass: 1.02413e26, orbitRadius: 4498396441, color: "深蓝色", diameter: 49244 },
+            { name: "冥王星", mass: 1.303e22, orbitRadius: 5906376272, color: "深棕色", diameter: 2370 }
+        ];
+
+        // 点击页面时创建表格
+        document.addEventListener('click', function() {
+            // 创建表格元素
+            const table = document.createElement('table');
+            
+            // 创建表头
+            const headers = ['名称', '质量(kg)', '轨道半径(km)', '颜色', '直径(km)'];
+            const headerRow = document.createElement('tr');
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            // 添加数据行
+            solarSystemObjects.forEach(obj => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${obj.name}</td>
+                    <td>${obj.mass}</td>
+                    <td>${obj.orbitRadius}</td>
+                    <td style="color: ${obj.color};">${obj.color}</td>
+                    <td>${obj.diameter}</td>
+                `;
+                table.appendChild(row);
+            });
+
+            // 添加排序功能
+            headers.forEach((_, index) => {
+                headerRow.children[index].addEventListener('click', function() {
+                    // 提取数据行并排序
+                    const rows = Array.from(table.querySelectorAll('tr')).slice(1); // 跳过表头
+                    rows.sort((a, b) => {
+                        const valA = parseFloat(a.cells[index].textContent) || a.cells[index].textContent;
+                        const valB = parseFloat(b.cells[index].textContent) || b.cells[index].textContent;
+                        
+                        if (typeof valA === 'number' && typeof valB === 'number') {
+                            return valA - valB; // 数值排序
+                        } else {
+                            return valA.localeCompare(valB); // 字符串排序
+                        }
+                    });
+
+                    // 重新排列表格行
+                    rows.forEach(row => table.appendChild(row));
+                });
+            });
+
+            // 将表格添加到页面
+            document.body.appendChild(table);
+        });
+    </script>
+</body>
+</html>
