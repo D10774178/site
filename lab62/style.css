@@ -1,0 +1,89 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.equation-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.equation-input input {
+    width: 70px;
+    padding: 12px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+.equation-input input:focus {
+    border-color: #e74c3c;
+    outline: none;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 25px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.solution-area {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 100px;
+    border: 1px solid #e9ecef;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+#solution-result {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #343a40;
+}
+
+.complex {
+    font-family: 'Cambria Math', serif;
+    font-size: 20px;
+}
